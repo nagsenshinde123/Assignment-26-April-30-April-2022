@@ -1,0 +1,105 @@
+ 1)  Create a myStack Class which has the following methods:
+      1. Push(x) : inserts the data into the stack 
+      2. Pop(): Removes the top element.
+      3. Peek() : Displays the top element.
+
+      public class MyStack {
+	int size = 6;
+	int[] s = new int[size];
+	int top = -1;
+
+	public int push(int data) {
+		if(top >= size -1) {
+			System.out.println("Stack is overFlow");
+			return -1;
+		}
+		else {
+			top++;
+			s[top] = data;
+			return s[top];
+		}
+	}
+	public int pop() {
+		if(top == -1) {
+			System.out.println("Stack is Empty !");
+			return -1;
+		}
+		else
+		{
+			int temp = s[top];
+			top--;
+			return temp;
+		}
+	}
+	public void peek() {
+		if(top == -1) {
+			System.out.println("Stack is Empty !");
+			return ;
+		}
+		else
+		{
+			 System.out.println(s[top]);
+		}
+	}
+
+	public void display() {
+		if(top == -1) {
+			System.out.println("Stack is Empty !");
+			return ;
+		}
+		else
+		{
+			for(int i=0; i<=top; i++) {
+				System.out.print(s[i]+" ");
+			}
+		}
+	}
+
+
+}
+public class StackClient {
+
+	public static void main(String[] args) {
+		MyStack st = new MyStack();
+
+		st.push(25);
+		st.push(10);
+		st.push(21);
+		st.push(30);
+		st.push(15);
+		st.push(20);
+		st.pop();
+		st.display();
+
+	}
+
+}
+
+------------------------------------***-----------------------------------------
+
+Q.2)  Remove duplicates from a sorted array using stack
+
+      Ex - {0,0,1,1,1,1,2,2,4,5}
+      Output - {0,1,2,4,5};"
+
+
+      public class Assignment {
+	public static void main(String[] args) {
+		int[] arr = { 0,0,1,1,1,1,2,2,4,5 };
+		removeDupticate(arr);
+
+	}
+
+	private static void removeDupticate(int[] arr) {
+		Stack<Integer> a = new Stack();
+		for (int i = 0; i < arr.length -1; i++) {
+			if (arr[i] != arr[i + 1])
+				a.push(arr[i]);
+		}
+		a.push(arr[arr.length -1]);
+		System.out.println(a);
+
+	}
+
+}
+------------------------------------***-----------------------------------------

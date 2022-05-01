@@ -1,0 +1,88 @@
+ 1) Evaluate a postfix expression
+     https://www.techiedelight.com/evaluate-given-postfix-expression/
+
+     public class EvaluatePostFixExpression{
+
+	public static void main(String[] args){
+
+        String exp = "138*+";
+        System.out.println(evalPostfix(exp));
+    }
+
+    public static int evalPostfix(String exp){
+
+        if (exp == null || exp.length() == 0) {
+            System.exit(-1);
+        }
+        Stack<Integer> stack = new Stack<>();
+
+        for (char c: exp.toCharArray())
+        {
+            if (Character.isDigit(c)) {
+                stack.push(c - '0');
+            }
+            else {
+                int x = stack.pop();
+                int y = stack.pop();
+
+                if (c == '+') {
+                    stack.push(y + x);
+                }
+                else if (c == '-') {
+                    stack.push(y - x);
+                }
+                else if (c == '*') {
+                    stack.push(y * x);
+                }
+                else if (c == '/') {
+                    stack.push(y / x);
+                }
+            }
+        }
+
+        return stack.pop();
+    }
+
+
+}
+
+-------------------------------------***---------------------------------------------------
+Q.2)  Basic Calculator
+      https://leetcode.com/problems/basic-calculator-ii/
+
+      public class BasicCalculator_II {
+
+	public static void main(String[] args) {
+		String s = "3+2*2";
+		int print = calculate(s);
+		System.out.println(print);
+
+	}
+	public static int calculate(String s) {
+        s = s.trim().replaceAll(" ","");
+        String[] nums = s.split("[\\+\\-\\*/]+");
+        String[] ops = s.split("[\\d]+");
+        Stack<Integer> numsStack = new Stack();
+        numsStack.push(Integer.parseInt(nums[0]));
+        for (int i = 1; i < ops.length; i ++) {
+            int curr = Integer.parseInt(nums[i]);
+            if (ops[i].equals("*")) {
+                curr = numsStack.pop() * curr;
+            }
+            if (ops[i].equals("/")) {
+                curr = numsStack.pop() / curr;
+            }
+            if (ops[i].equals("-")){
+                curr = -curr;
+            }
+            numsStack.push(curr);
+        }
+        int result = 0;
+        while (numsStack.size() > 0) {
+            result += numsStack.pop();
+        }
+        return result;
+    }
+
+}
+-------------------------------------***---------------------------------------------------
